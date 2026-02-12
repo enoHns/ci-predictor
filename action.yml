@@ -1,0 +1,38 @@
+name: 'ci-predictor'
+description: 'Predict which CI jobs will fail before your pipeline finishes'
+author: 'Hénoc HOUNSA'
+
+branding:
+  icon: 'zap'
+  color: 'yellow'
+
+inputs:
+  github-token:
+    description: 'GitHub token with actions:read and pull-requests:write'
+    required: true
+    default: ${{ github.token }}
+
+  lookback-runs:
+    description: 'Number of past runs to build the correlation model'
+    required: false
+    default: '50'
+
+  post-comment:
+    description: 'Post prediction as a PR comment'
+    required: false
+    default: 'true'
+
+  fail-on-high-risk:
+    description: 'Fail the step if risk level is high or critical'
+    required: false
+    default: 'false'
+
+outputs:
+  risk-level:
+    description: 'Predicted risk level: low | medium | high | critical'
+  risk-score:
+    description: 'Numeric risk score 0-100'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
