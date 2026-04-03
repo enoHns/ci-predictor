@@ -1,6 +1,6 @@
 {
   "name": "ci-predictor",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "GitHub Action — predict which jobs will fail based on changed files",
   "main": "dist/index.js",
   "scripts": {
